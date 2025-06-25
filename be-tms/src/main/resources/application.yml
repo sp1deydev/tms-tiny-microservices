@@ -3,6 +3,10 @@ server:
   servlet:
     context-path: /be-tms/api
 spring:
+  cache:
+    type: redis
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: be-tms
   rabbitmq:
@@ -34,6 +38,10 @@ spring:
         jdbc.batch_size: 1000
         order_inserts: true
         default_schema: public
+  data:
+    redis:
+      host: 103.188.83.162
+      port: 6379
 grpc:
   client:
     user-service:
