@@ -1,7 +1,5 @@
-package com.thientdk.tms_inventory_service.aop.exceptions;
+package com.thientdk.be_tms.aop.exceptions;
 
-import lombok.Data;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 

@@ -1,9 +1,10 @@
-package com.thientdk.tms_inventory_service.aop.exceptions;
+package com.thientdk.be_tms.aop.exceptions;
 
+import com.thientdk.be_tms.models.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.thientdk.tms_inventory_service.models.responses.ErrorResponse;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
