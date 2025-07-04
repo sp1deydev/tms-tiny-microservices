@@ -8,11 +8,14 @@ import com.thientdk.tms_inventory_service.models.responses.ErrorResponse;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ApiException.class)
-    public ResponseEntity<ErrorResponse> handleApiException(ApiException ex, HttpServletRequest request) {
-        ErrorCode errorCode = ex.getErrorCode();
-        ErrorResponse response = ErrorResponse.of(errorCode, request.getRequestURI());
-        return ResponseEntity.status(errorCode.getHttpStatusCode()).body(response);
+    @ExceptionHandler(value = ApiException.class)
+    ResponseEntity<ErrorResponse> handlingAppException(ApiException exception) {
+
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(exception.getErrorCode().getCode());
+        errorResponse.setMessage(exception.getMessage());
+
+        return ResponseEntity.status(exception.getErrorCode().getHttpStatusCode()).body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)

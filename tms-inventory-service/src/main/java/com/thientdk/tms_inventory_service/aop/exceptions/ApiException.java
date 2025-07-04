@@ -1,14 +1,24 @@
 package com.thientdk.tms_inventory_service.aop.exceptions;
 
-public class ApiException extends RuntimeException {
-    private final ErrorCode errorCode;
+import lombok.Data;
 
-    public ApiException(ErrorCode errorCode) {
+@Data
+public class ApiException extends RuntimeException {
+    private ErrorCode errorCode;
+    private String exceptionMessage;
+
+    public ApiException(ErrorCode errorCode, String resourceName) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    public ApiException(ErrorCode errorCode){
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public String getMessage() {
+        return errorCode.getMessage(exceptionMessage);
     }
 }
