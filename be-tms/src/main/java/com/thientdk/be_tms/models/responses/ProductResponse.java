@@ -1,4 +1,4 @@
-package com.thientdk.tms_inventory_service.models.requests;
+package com.thientdk.be_tms.models.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,8 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductRequest {
+public class ProductResponse {
+    private String id;
     private String name;
     private String description;
     private BigDecimal price;

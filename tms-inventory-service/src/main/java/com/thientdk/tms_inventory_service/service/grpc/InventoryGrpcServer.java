@@ -4,6 +4,7 @@ import com.thientdk.tms_inventory_service.aop.exceptions.ApiException;
 import com.thientdk.tms_inventory_service.grpc.InventoryServiceGrpc;
 import com.thientdk.tms_inventory_service.grpc.ProductRequestGrpc;
 import com.thientdk.tms_inventory_service.grpc.TextResponseGrpc;
+import com.thientdk.tms_inventory_service.mappers.gprc.ProductGrpcMapper;
 import com.thientdk.tms_inventory_service.models.requests.ProductRequest;
 import com.thientdk.tms_inventory_service.models.responses.TextResponse;
 import com.thientdk.tms_inventory_service.service.ProductService;
@@ -23,13 +24,11 @@ public class InventoryGrpcServer extends InventoryServiceGrpc.InventoryServiceIm
     @Override
     public void createProduct(ProductRequestGrpc request, StreamObserver<TextResponseGrpc> responseObserver) {
         try {
-
             log.info("[createProduct] - GRPC create product START {}", request);
-//            ProductRequest createProductRequest = ContractGrpcMapper
-//                    .fromCreatePinkReportRequestGrpcToDto(request);
-            ProductRequest createPinkReportRequest = new ProductRequest();
+            ProductRequest productRequest = ProductGrpcMapper.fromGrpcToProductRequest(request);
 
-            TextResponse response = productService.createProduct(createPinkReportRequest);
+            TextResponse response = productService.createProduct(productRequest);
+
             TextResponseGrpc grpcResponse = TextResponseGrpc.newBuilder()
                     .setMessage(response.getMessage())
                     .build();

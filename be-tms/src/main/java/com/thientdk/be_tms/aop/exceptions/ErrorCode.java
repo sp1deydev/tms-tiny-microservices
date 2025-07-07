@@ -1,8 +1,10 @@
 package com.thientdk.be_tms.aop.exceptions;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
+@Getter
 public enum ErrorCode {
 
     SUCCESS(1, "Success", true, HttpStatus.OK),
@@ -27,19 +29,8 @@ public enum ErrorCode {
         this.httpStatusCode = httpStatusCode;
     }
 
-    public int getCode() {
-        return code;
+    public String getMessage(String additionalMessage) {
+        return String.format(message, additionalMessage);
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public HttpStatusCode getHttpStatusCode() {
-        return httpStatusCode;
-    }
 }

@@ -1,4 +1,4 @@
-package com.thientdk.tms_inventory_service.models.requests;
+package com.thientdk.be_tms.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

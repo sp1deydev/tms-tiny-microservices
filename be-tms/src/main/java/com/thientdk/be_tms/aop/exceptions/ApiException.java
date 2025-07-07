@@ -1,14 +1,26 @@
 package com.thientdk.be_tms.aop.exceptions;
 
-public class ApiException extends RuntimeException {
-    private final ErrorCode errorCode;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-    public ApiException(ErrorCode errorCode) {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ApiException extends RuntimeException {
+    private ErrorCode errorCode;
+    private String exceptionMessage;
+
+    public ApiException(ErrorCode errorCode, String exceptionMessage) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    public ApiException(ErrorCode errorCode){
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public String getMessage() {
+        return errorCode.getMessage(exceptionMessage);
     }
 }
